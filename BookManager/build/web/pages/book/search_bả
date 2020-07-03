@@ -1,0 +1,121 @@
+<%-- 
+    Document   : index
+    Created on : Nov 22, 2019, 1:38:57 PM
+    Author     : Asus ZenBook
+--%>
+
+<%@page 
+    import ="java.util.Scanner"
+    import ="main.BookList"
+    import ="main.CategoryList"
+    import ="main.Template"
+    import ="main.Helper"
+%>
+
+<%    
+    String tableBody    = "";
+    String message      = "";
+    String error        = "";
+    String searchField  = "title";
+    String searchValue  = "";
+    String catFilter    = "";
+    try{        
+        // CODE HERE!!!
+        // category filter
+        CategoryList catList    = CategoryList.class.cast(request.getAttribute("catList"));    
+        if (catList.getN() > 0) catFilter = Template.showCatFilter(request, catList);
+        
+        
+        // book list
+        BookList list           = BookList.class.cast(request.getAttribute("list"));            
+        if (list.getN() > 0) tableBody = Template.showBookTableBody(request, list);   
+        else tableBody  = "<tr><td colspan=\"7\" class=\"text-primary text-center\">Data is empty now</td></tr>";
+        if (request.getParameter("message") != null) message = Template.showMessage(request.getParameter("message"));
+        if (Helper.getParam(request, "search_field") != null) searchField = Helper.getParam(request, "search_field");
+        if (Helper.getParam(request, "search_value") != null) searchValue = Helper.getParam(request, "search_value");
+        
+        
+    }catch (Exception e){
+        tableBody     = e.getMessage();
+    }
+        
+    
+%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <jsp:include page="/template/head.jsp" />
+    <body class="bg-secondary">        
+        
+        <div class="container bg-light mt-3 mt-lg-3 px-lg-5 rounded">
+            <!-- HEADING -->
+            <jsp:include page="/template/heading.jsp" >
+                <jsp:param name="title" value="Book manager" />
+                <jsp:param name="page" value="index" />
+            </jsp:include>
+
+            
+            <!-- NAVIGATION -->
+            <jsp:include page="/template/nav.jsp" >
+                <jsp:param name="page" value="book" />
+            </jsp:include>
+            
+            <!-- FILTER -->
+            <div class="row mt-2">
+                <div class="col-md-4 col-8 offset-2 offset-md-0 mb-2 mb-md-0">
+                    <jsp:include page="/pages/book/cat_filter.jsp" />
+                </div>
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div id="search-dropdown" class="dropdown">
+                              <button id="search-by-btn" name="<% out.print(searchField); %>" class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Search by <% out.print(searchField); %>
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#" name="title">Search by title</a>
+                                <a class="dropdown-item" href="#" name="author">Search by author</a>
+                              </div>
+                            </div>
+                        </div>
+                        <input id="search-input" value="<% out.print(searchValue); %>" type="text" class="form-control" name="search">
+                        <div class="input-group-append">
+                            <div class="btn-group">
+                                <button id="search-btn" class="btn btn-primary">Search</button>
+                                <button id="clear-btn" class="btn btn-info">Clear</button>                                   
+                            </div>
+                        </div>
+                    </div>                   
+                </div>                
+            </div>
+            
+            <!-- MESSAGE -->
+            <% out.print(message); %>
+           
+            <!-- TABLE -->
+            <div class="row mt-1">
+                <div class="col-12">
+                    <table id="list-table" class="table table-hover table-responsive-lg">
+                        <caption>List of books</caption>
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" width="30%" class="sort"><a href="#" class="text-decoration-none" field="title">Title</a></th>
+                                <th scope="col" class="sort"><a href="#" class="text-decoration-none" field="author">Author</a></th>
+                                <th scope="col" class="sort"><a href="#" class="text-decoration-none" field="category">Category</a></th>
+                                <th scope="col" class="sort"><a href="#" class="text-decoration-none" field="price">Price</a></th>
+                                <th scope="col" class="sort">Action</th>
+                                <th scope="col" class="sort"><a href="#" class="text-decoration-none" field="id">Id</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>       
+                            <% out.println(tableBody); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>                       
+    <jsp:include page="/template/scripts.jsp" />
+    </body>
+</html>

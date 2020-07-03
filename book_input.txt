@@ -1,0 +1,10 @@
+10|Tu tot den vi dai|Jim Collins|Kinh te|active|77348|20191128100016|20191129121357
+9|Doc vi bat ky ai|TS. David J. Lieberman|Kinh te|active|43900|20191128000000|20191129121323
+8|Khoang cach|Marty Neumeier|Kinh te|active|69199|20191127000000|20191129121330
+7|Nong gian la ban ngang, tinh lang la ban linh|Tong mac|Song dep|active|62000|20191125000000|20191128102427
+6|The gioi ba khong|Muhammad Yunus|Kinh te|active|105000|20191123000000|20191128102322
+5|7 Thoi quen cua nguoi thanh dat (tai ban 2019)|Steaven Covey|Phat trien ban than|active|87320|20191120000000|20191130203251
+4|Nha gia kim|Paulo Coelho|Phat trien ban than|active|54000|20191119000000|20191129205047
+3|Ten cua tro choi la bat coc|Higashino Keigo|Tieu thuyet|active|64500|20191101000000|20191130203253
+2|Dieu ky dieu cua tiem tap hoa|Higashino Keigo|Tieu thuyet|active|102911|20190921062133|20191128170826
+1|Phia sau nghi can x (tai ban 2019)|Higashino Keigo|Tieu thuyet|active|81495|20191023115930|20191130114459

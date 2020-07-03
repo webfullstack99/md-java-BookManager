@@ -1,0 +1,6 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <jsp:include page="/template/head.jsp" />
+    <body class="bg-secondary px-5">                
+        <div class="container-fluid bg-light mt-3 mt-lg-3 px-lg-5 rounded">
